@@ -27,9 +27,12 @@ class GitLabProject(GitProject):
 
     def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
         branches = set([x.name for x in self.__project__.protectedbranches.list()])
+        new_branches = set()
 
-        if '*' in branches:
-            branches.remove('*')
+        for branch in branches:
+            if '*' not in branch:
+                new_branches.add(branch)
+        branches = new_branches
 
         for branch in self.__project__.branches.list(iterator=True):
             last_commit = datetime.fromisoformat(branch.commit['committed_date'])
