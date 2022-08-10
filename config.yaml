@@ -1,0 +1,16 @@
+providers:
+  - name: github
+    github:
+      token: ${GITHUB_TOKEN}
+  - name: gitlab
+    gitlab:
+      token: ${GITLAB_TOKEN}
+      url: https://git.sos.ethz.ch
+repos:
+  - name: kubernetes
+    origin:
+      provider: gitlab
+      name: pkgs/kubernetes
+    mirrors:
+      - provider: github
+        name: vsk8s/kubernetes

@@ -1,0 +1,16 @@
+variables:
+  DISTRIBUTION_VER: "bullseye"
+
+image: docker.git.sos.ethz.ch/isg/debian-ci-base:$DISTRIBUTION_VER
+
+stages:
+  - run
+
+run:
+  stage: run
+  script:
+    - apt update && apt install -y python3-build python3-venv git
+    - pip3 install --upgrade wheel build
+    - python3 -m build
+    - pip install dist/gitsync-*-none-any.whl
+    - gitsync
