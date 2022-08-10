@@ -15,7 +15,15 @@ class GitHubProject(GitProject):
     def get_url_from_project(self) -> str:
         url = self.__project__.clone_url
         url = urlparse(url)
-        return url.scheme + '://' + self.__provider__.__client__.get_user().login + ':' + self.__provider__.__api_key__ + '@' + url.netloc + url.path
+        url = url.scheme\
+            + '://'\
+            + self.__provider__.__client__.get_user().login\
+            + ':' \
+            + self.__provider__.__api_key__ \
+            + '@' \
+            + url.netloc \
+            + url.path
+        return url
 
     def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
         branches = set()
@@ -34,16 +42,16 @@ class GitHubProject(GitProject):
         return set([x.name for x in self.__project__.get_tags()])
 
     def get_pull_mirrors(self) -> List[str]:
-        raise NotImplemented
+        raise NotImplementedError
 
     def add_pull_mirror(self, url: str):
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_push_mirrors(self) -> List[str]:
-        raise NotImplemented
+        raise NotImplementedError
 
     def add_push_mirror(self, url: str, only_protected_branches: bool):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class GitHub(GitProvider):

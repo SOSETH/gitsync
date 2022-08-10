@@ -84,7 +84,8 @@ if __name__ == '__main__':
                                 git_repo.push(downstream_commit, x, 'origin')
                             else:
                                 # We have no idea. It's not a fast-forward, so we give up here.
-                                log.error("Branch {} on remote {} diverged, you need to fix this manually!".format(x, name))
+                                log.error("Branch {} on remote {} diverged, you need to fix this manually!"
+                                          .format(x, name))
 
                         for x in (tags - mirror_tags[name]):
                             log.info("Pushing tag {} to mirror".format(x))

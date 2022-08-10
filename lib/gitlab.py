@@ -15,7 +15,15 @@ class GitLabProject(GitProject):
     def get_url_from_project(self) -> str:
         url = self.__project__.http_url_to_repo
         url = urlparse(url)
-        return url.scheme + '://' + self.__provider__.__client__.user.username + ':' + self.__provider__.__api_key__ + '@' + url.netloc + url.path
+        url = url.scheme \
+            + '://' \
+            + self.__provider__.__client__.user.username \
+            + ':' \
+            + self.__provider__.__api_key__ \
+            + '@' \
+            + url.netloc \
+            + url.path
+        return url
 
     def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
         branches = set([x.name for x in self.__project__.protectedbranches.list()])
@@ -47,10 +55,10 @@ class GitLabProject(GitProject):
         )
 
     def get_pull_mirrors(self) -> List[str]:
-        raise NotImplemented
+        raise NotImplementedError
 
     def add_pull_mirror(self, url: str):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class GitLab(GitProvider):

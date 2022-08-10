@@ -12,3 +12,4 @@ dependencies = [
     "gitpython",
     "PyGithub"
 ]
+readme = 'README.md'

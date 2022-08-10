@@ -43,4 +43,3 @@ class GitProject:
 
     def add_pull_mirror(self, url: str):
         pass
-
