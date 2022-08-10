@@ -36,4 +36,3 @@ class Git:
     def __exit__(self, exc_type, exc_value, tb):
         shutil.rmtree(self.__target__, ignore_errors=True)
         return exc_type is None
-
