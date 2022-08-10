@@ -13,3 +13,6 @@ dependencies = [
     "PyGithub"
 ]
 readme = 'README.md'
+
+[project.scripts]
+gitsync = "sync:do_sync"
