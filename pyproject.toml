@@ -15,4 +15,4 @@ dependencies = [
 readme = 'README.md'
 
 [project.scripts]
-gitsync = "sync:do_sync"
+gitsync = "gitsynccmd:do_sync"
