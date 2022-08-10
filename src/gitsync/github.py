@@ -1,6 +1,6 @@
 from typing import List, Set
 
-from src.lib.api import GitProvider, GitProject
+from gitsync.api import GitProvider, GitProject
 from github import Github, Repository
 from urllib.parse import urlparse
 from datetime import datetime, timedelta

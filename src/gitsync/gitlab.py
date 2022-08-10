@@ -2,7 +2,7 @@ import gitlab
 from gitlab.v4.objects import Project
 from urllib.parse import urlparse
 from typing import List, Set
-from src.lib.api import GitProvider, GitProject
+from gitsync.api import GitProvider, GitProject
 from datetime import datetime, timedelta, timezone
 
 

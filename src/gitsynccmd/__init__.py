@@ -1,7 +1,20 @@
 import io
+import os
+
 import yaml
 import logging as log
-from src import lib
+import gitsync
+import re
+
+regex = re.compile('^\\${(.*)}$')
+
+
+def resolve_token(token: str) -> str:
+    if '${' in token:
+        matches = regex.match(token)
+        if matches:
+            return os.getenv(matches.groups()[0])
+    return token
 
 
 def do_sync():
@@ -15,9 +28,9 @@ def do_sync():
         for provider in config['providers']:
             name = provider['name']
             if 'github' in provider:
-                providers[name] = lib.GitHub(provider['github']['token'])
+                providers[name] = gitsync.GitHub(resolve_token(provider['github']['token']))
             elif 'gitlab' in provider:
-                providers[name] = lib.GitLab(provider['gitlab']['url'], provider['gitlab']['token'])
+                providers[name] = gitsync.GitLab(provider['gitlab']['url'], resolve_token(provider['gitlab']['token']))
             else:
                 raise 'Unknown provider type for provider ' + name
 
@@ -58,7 +71,7 @@ def do_sync():
 
             if need_sync:
                 log.info("Cloning repo")
-                with lib.Git(origin.get_url_from_project()) as git_repo:
+                with gitsync.Git(origin.get_url_from_project()) as git_repo:
                     for mirror in repo['mirrors']:
                         name = mirror['provider']
                         log.info("Adding remote {}".format(name))
@@ -98,11 +111,11 @@ def do_sync():
             # Should we add push mirroring to all mirrors to origin?
             if providers[repo['origin']['provider']].supports_push_mirroring():
                 mirrors = origin.get_push_mirrors()
-                mirrors = [lib.filter_url(x) for x in mirrors]
+                mirrors = [gitsync.filter_url(x) for x in mirrors]
 
                 for k, v in mirror_refs.items():
                     url = v.get_url_from_project()
-                    filtered = lib.filter_url(url)
+                    filtered = gitsync.filter_url(url)
                     if filtered not in mirrors:
                         log.info("Adding push mirror for {} to origin".format(k))
                         origin.add_push_mirror(url, True)
@@ -110,17 +123,17 @@ def do_sync():
             # Should we add push or pull mirroring on mirrors to/from origin?
             for k, v in mirror_refs.items():
                 url = origin.get_url_from_project()
-                filtered = lib.filter_url(url)
+                filtered = gitsync.filter_url(url)
 
                 if providers[k].supports_push_mirroring():
                     mirrors = v.get_push_mirrors()
-                    mirrors = [lib.filter_url(x) for x in mirrors]
+                    mirrors = [gitsync.filter_url(x) for x in mirrors]
                     if filtered not in mirrors:
                         log.info("Adding push mirror for origin to {}".format(k))
                         v.add_push_mirror(url, True)
                 if providers[k].supports_pull_mirroring():
                     mirrors = v.get()
-                    mirrors = [lib.filter_url(x) for x in mirrors]
+                    mirrors = [gitsync.filter_url(x) for x in mirrors]
                     if filtered not in mirrors:
                         log.info("Adding pull mirror from origin to {}".format(k))
                         v.add_pull_mirror(url)
