@@ -1,10 +1,10 @@
 import io
 import yaml
 import logging as log
+from src import lib
 
-import lib
 
-if __name__ == '__main__':
+def do_sync():
     log.basicConfig(format='%(asctime)s %(message)s', level=log.INFO)
 
     with io.open('config.yaml') as config_file:

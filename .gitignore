@@ -4,3 +4,4 @@ venv
 dist
 config.yaml
 gitsync.egg-info
+*.pyc
