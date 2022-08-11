@@ -29,6 +29,9 @@ class GitProject:
     def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
         pass
 
+    def get_all_branches(self) -> List[str]:
+        pass
+
     def get_tags(self) -> Set[str]:
         pass
 

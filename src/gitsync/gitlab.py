@@ -11,6 +11,7 @@ class GitLabProject(GitProject):
         super().__init__()
         self.__project__ = project
         self.__provider__ = provider
+        self.__branches__ = []
 
     def get_url_from_project(self) -> str:
         url = self.__project__.http_url_to_repo
@@ -25,7 +26,20 @@ class GitLabProject(GitProject):
             + url.path
         return url
 
+    def get_all_branches(self) -> List[str]:
+        if self.__branches__:
+            return [x.name for x in self.__branches__]
+
+        for branch in self.__project__.branches.list(iterator=True):
+            self.__branch_commits__[branch.name] = branch.commit['id']
+            self.__branches__.append(branch)
+
+        return [x.name for x in self.__branches__]
+
     def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
+        if not self.__branches__:
+            self.get_all_branches()
+
         branches = set([x.name for x in self.__project__.protectedbranches.list()])
         new_branches = set()
 
@@ -34,7 +48,7 @@ class GitLabProject(GitProject):
                 new_branches.add(branch)
         branches = new_branches
 
-        for branch in self.__project__.branches.list(iterator=True):
+        for branch in self.__branches__:
             last_commit = datetime.fromisoformat(branch.commit['committed_date'])
             if datetime.now(timezone.utc) - last_commit <= active_time:
                 branches.add(branch.name)

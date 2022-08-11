@@ -337,13 +337,7 @@ repos:
     mirrors:
       - provider: gitlab
         name: ansibleroles/mollyguard
-  - name: sos-monitoring-tools
-    origin:
-      provider: github
-      name: SOSETH/sos-monitoring-tools
-    mirrors:
-      - provider: gitlab
-        name: ansibleroles/sos-monitoring-tools
+  # sos-monitoring-tools does not have a mirror
   - name: monitoring-client
     origin:
       provider: github
