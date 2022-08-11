@@ -40,6 +40,7 @@ def do_sync():
 
             origin = providers[repo['origin']['provider']].get_project(repo['origin']['name'])
             branches = origin.get_active_branches()
+            all_branches = origin.get_all_branches()
             branch_commits = {x: origin.get_last_commit_on_branch(x) for x in origin.get_all_branches()}
             tags = origin.get_tags()
 
@@ -53,8 +54,8 @@ def do_sync():
                 mirror_refs[name] = mirror_ref
                 mirror_tags[name] = mirror_ref.get_tags()
 
-                for x in mirror_ref.get_all_branches():
-                    if x not in branches:
+                for x in mirror_ref.get_active_branches():
+                    if x not in all_branches:
                         log.info("Branch {} available on mirror but not on origin".format(x))
                         branches.append(x)
                         need_sync = True
