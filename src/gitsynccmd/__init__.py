@@ -40,7 +40,8 @@ def do_sync():
 
             origin = providers[repo['origin']['provider']].get_project(repo['origin']['name'])
             branches = origin.get_active_branches()
-            branch_commits = {x: origin.get_last_commit_on_branch(x) for x in branches}
+            all_branches = origin.get_all_branches()
+            branch_commits = {x: origin.get_last_commit_on_branch(x) for x in origin.get_all_branches()}
             tags = origin.get_tags()
 
             mirror_refs = {}
@@ -54,7 +55,7 @@ def do_sync():
                 mirror_tags[name] = mirror_ref.get_tags()
 
                 for x in mirror_ref.get_active_branches():
-                    if x not in branches:
+                    if x not in all_branches:
                         log.info("Branch {} available on mirror but not on origin".format(x))
                         branches.append(x)
                         need_sync = True
@@ -79,19 +80,21 @@ def do_sync():
                         git_repo.add_remote(downstream.get_url_from_project(), name)
 
                         for x in branches:
-                            upstream_commit = branch_commits[x]
-                            upstream_commit_ref = git_repo.get_commit(upstream_commit)
+                            upstream_commit = branch_commits[x] if x in branch_commits else ''
+                            upstream_commit_ref = git_repo.get_commit(upstream_commit) if x in branch_commits else ''
                             downstream_commit = downstream.get_last_commit_on_branch(x)
                             downstream_commit_ref = git_repo.get_commit(downstream_commit)
 
                             if upstream_commit == downstream_commit:
                                 continue
 
-                            if git_repo.is_ancestor(downstream_commit_ref, upstream_commit_ref):
+                            if upstream_commit_ref != '' and git_repo.is_ancestor(downstream_commit_ref,
+                                                                                  upstream_commit_ref):
                                 # Upstream is newer
                                 log.info("Pushing origin commits to mirror")
                                 git_repo.push(upstream_commit, x, name)
-                            elif git_repo.is_ancestor(upstream_commit_ref, downstream_commit_ref):
+                            elif upstream_commit_ref == '' or git_repo.is_ancestor(upstream_commit_ref,
+                                                                                   downstream_commit_ref):
                                 # Downstream is newer
                                 log.info("Pushing mirror commits to origin")
                                 git_repo.push(downstream_commit, x, 'origin')

@@ -11,6 +11,7 @@ class GitHubProject(GitProject):
         super().__init__()
         self.__project__ = project
         self.__provider__ = provider
+        self.__branches__ = []
 
     def get_url_from_project(self) -> str:
         url = self.__project__.clone_url
@@ -25,16 +26,30 @@ class GitHubProject(GitProject):
             + url.path
         return url
 
-    def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
-        branches = set()
+    def get_all_branches(self) -> List[str]:
+        if self.__branches__:
+            return [x.name for x in self.__branches__]
 
         for branch in self.__project__.get_branches():
+            self.__branch_commits__[branch.name] = branch.commit.sha
+            self.__branches__.append(branch)
+
+        return [x.name for x in self.__branches__]
+
+    def get_active_branches(self, active_time=timedelta(days=40)) -> List[str]:
+        if not self.__branches__:
+            self.get_all_branches()
+
+        branches = set()
+
+        for branch in self.__branches__:
             last_commit = branch.commit.commit.committer.date
             if datetime.now() - last_commit <= active_time:
                 branches.add(branch.name)
             elif branch.protected:
                 branches.add(branch.name)
-            self.__branch_commits__[branch.name] = branch.commit.sha
+            elif branch.name == self.__project__.default_branch:
+                branches.add(branch.name)
 
         return list(branches)
 
