@@ -9,4 +9,4 @@ def filter_url(url: str) -> str:
         return url
     else:
         groups = matches.groups()
-        return groups[0] + '*****:*****' + groups[2]
+        return groups[0] + '*****:*****' + groups[3]
