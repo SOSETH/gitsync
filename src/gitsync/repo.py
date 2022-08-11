@@ -19,9 +19,10 @@ class Git:
         return self.__repo__.is_ancestor(commit_a, commit_b)
 
     def push(self, commit: str, name: str, remote: str) -> bool:
-        if name in self.__repo__.heads:
-            self.__repo__.delete_head(name)
-        self.__repo__.create_head(name, commit)
+        if name not in self.__repo__.heads:
+            self.__repo__.create_head(name, commit)
+        else:
+            self.__repo__.heads[name].commit = commit
         remote = self.__repo__.remote(remote)
         result = remote.push(name + ':' + name)
         if len(result) < 1:
