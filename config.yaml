@@ -14,3 +14,430 @@ repos:
     mirrors:
       - provider: github
         name: vsk8s/kubernetes
+#  - name: gitsync
+#    origin:
+#      provider: github
+#      name: SOSETH/gitsync
+#    mirrors:
+#      - provider: gitlab
+#        name: isg/gitsync
+  - name: grafana-agent
+    origin:
+      provider: github
+      name: SOSETH/grafana-agent
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/grafana-agent
+  - name: grafana
+    origin:
+      provider: github
+      name: SOSETH/grafana
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/grafana
+  - name: awx
+    origin:
+      provider: github
+      name: SOSETH/awx
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/awx
+  - name: k3s
+    origin:
+      provider: github
+      name: SOSETH/k3s
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/k3s
+  - name: local-ca
+    origin:
+      provider: github
+      name: SOSETH/local-ca
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/local-ca
+  - name: vault
+    origin:
+      provider: github
+      name: SOSETH/vault
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/vault
+  - name: vault-agent
+    origin:
+      provider: github
+      name: SOSETH/vault-agent
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/vault-agent
+  - name: vaultwarden
+    origin:
+      provider: github
+      name: SOSETH/vaultwarden
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/vaultwarden
+  - name: debian-ci-base
+    origin:
+      provider: github
+      name: SOSETH/debian-ci-base
+    mirrors:
+      - provider: gitlab
+        name: isg/debian-ci-base
+  - name: ssh
+    origin:
+      provider: github
+      name: SOSETH/ssh
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/ssh
+  - name: mailserver
+    origin:
+      provider: github
+      name: SOSETH/mailserver
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/mailserver
+  - name: regional
+    origin:
+      provider: github
+      name: SOSETH/regional
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/regional
+  - name: gitlab-runner
+    origin:
+      provider: github
+      name: SOSETH/gitlab-runner
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/gitlab-runner
+  - name: vault-proxy
+    origin:
+      provider: github
+      name: SOSETH/vault-proxy
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/vault-proxy
+  - name: network
+    origin:
+      provider: github
+      name: SOSETH/network
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/network
+  - name: time
+    origin:
+      provider: github
+      name: SOSETH/time
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/time
+  - name: apt
+    origin:
+      provider: github
+      name: SOSETH/apt
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/apt
+  - name: monitoring-base
+    origin:
+      provider: github
+      name: SOSETH/monitoring-base
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/monitoring-base
+  - name: mailclient
+    origin:
+      provider: github
+      name: SOSETH/mailclient
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/mailclient
+  - name: router
+    origin:
+      provider: github
+      name: SOSETH/router
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/router
+  - name: kerberos
+    origin:
+      provider: github
+      name: SOSETH/kerberos
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/kerberos
+  - name: letsencrypt
+    origin:
+      provider: github
+      name: SOSETH/letsencrypt
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/letsencrypt
+  - name: consul
+    origin:
+      provider: github
+      name: SOSETH/consul
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/consul
+  - name: victoriametrics
+    origin:
+      provider: github
+      name: SOSETH/victoriametrics
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/victoriametrics
+  - name: terraform-vault-ca
+    origin:
+      provider: github
+      name: SOSETH/terraform-vault-ca
+    mirrors:
+      - provider: gitlab
+        name: terraform/terraform-vault-ca
+  - name: nginx
+    origin:
+      provider: github
+      name: SOSETH/nginx
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/nginx
+  - name: dns-resolver
+    origin:
+      provider: github
+      name: SOSETH/dns-resolver
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/dns-resolver
+  - name: monitoring-server
+    origin:
+      provider: github
+      name: SOSETH/monitoring-server
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/monitoring-server
+  - name: check_iostat
+    origin:
+      provider: github
+      name: SOSETH/check_iostat
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_iostat
+  - name: docker
+    origin:
+      provider: github
+      name: SOSETH/docker
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/docker
+  - name: apache
+    origin:
+      provider: github
+      name: SOSETH/apache
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/apache
+  - name: haproxy
+    origin:
+      provider: github
+      name: SOSETH/haproxy
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/haproxy
+  - name: ipmi
+    origin:
+      provider: github
+      name: SOSETH/ipmi
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/ipmi
+  - name: ocserv
+    origin:
+      provider: github
+      name: SOSETH/ocserv
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/ocserv
+  - name: check_sas_smart
+    origin:
+      provider: github
+      name: SOSETH/check_sas_smart
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_sas_smart
+  - name: check_smartvalues
+    origin:
+      provider: github
+      name: SOSETH/check_smartvalues
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_smartvalues
+  - name: check_raid
+    origin:
+      provider: github
+      name: SOSETH/check_raid
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_raid
+  - name: check_mem
+    origin:
+      provider: github
+      name: SOSETH/check_mem
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_mem
+  - name: sh
+    origin:
+      provider: github
+      name: SOSETH/sh
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/sh
+  #tcpdup is archived
+  - name: mariadb
+    origin:
+      provider: github
+      name: SOSETH/mariadb
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/mariadb
+  - name: mariadb-ha
+    origin:
+      provider: github
+      name: SOSETH/mariadb-ha
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/mariadb-ha
+  - name: programs
+    origin:
+      provider: github
+      name: SOSETH/programs
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/programs
+  - name: motd
+    origin:
+      provider: github
+      name: SOSETH/motd
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/motd
+  - name: apt-dater-host
+    origin:
+      provider: github
+      name: SOSETH/apt-dater-host
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/apt-dater-host
+  - name: mollyguard
+    origin:
+      provider: github
+      name: SOSETH/mollyguard
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/mollyguard
+  - name: sos-monitoring-tools
+    origin:
+      provider: github
+      name: SOSETH/sos-monitoring-tools
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/sos-monitoring-tools
+  - name: monitoring-client
+    origin:
+      provider: github
+      name: SOSETH/monitoring-client
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/monitoring-client
+  - name: monitoring-proxy
+    origin:
+      provider: github
+      name: SOSETH/monitoring-proxy
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/monitoring-proxy
+  # graphite_exporter has no mirror
+  - name: check_ipmi_sensor_v3
+    origin:
+      provider: github
+      name: SOSETH/check_ipmi_sensor_v3
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_ipmi_sensor_v3
+  - name: check_ib
+    origin:
+      provider: github
+      name: SOSETH/check_ib
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_ib
+  - name: aptly
+    origin:
+      provider: github
+      name: SOSETH/aptly
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/aptly
+  # snmp_exporter has no mirror
+  - name: tmux
+    origin:
+      provider: github
+      name: SOSETH/tmux
+    mirrors:
+      - provider: gitlab
+        name: ansibleroles/tmux
+  - name: python-ci-base
+    origin:
+      provider: github
+      name: SOSETH/python-ci-base
+    mirrors:
+      - provider: gitlab
+        name: isg/python-ci-base
+  - name: check_lsi_raid
+    origin:
+      provider: github
+      name: SOSETH/check_lsi_raid
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_lsi_raid
+  # ceph_exporter is archived
+  # check_ceph_dash is archived
+  - name: check_power
+    origin:
+      provider: github
+      name: SOSETH/check_power
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_power
+  - name: check-ceph
+    origin:
+      provider: github
+      name: SOSETH/check-ceph
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check-ceph
+  - name: check_snmp_int
+    origin:
+      provider: github
+      name: SOSETH/check_snmp_int
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_snmp_int
+  - name: check_lm_sensors
+    origin:
+      provider: github
+      name: SOSETH/check_lm_sensors
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_lm_sensors
+  - name: check_apcupsd
+    origin:
+      provider: github
+      name: SOSETH/check_apcupsd
+    mirrors:
+      - provider: gitlab
+        name: pkgs/icinga/check_apcupsd
+  # send-pmg-report is archived
+  # ceph-dash has no mirror
