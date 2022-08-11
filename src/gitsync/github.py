@@ -34,6 +34,8 @@ class GitHubProject(GitProject):
                 branches.add(branch.name)
             elif branch.protected:
                 branches.add(branch.name)
+            elif branch.name == self.__project__.default_branch:
+                branches.add(branch.name)
             self.__branch_commits__[branch.name] = branch.commit.sha
 
         return list(branches)
