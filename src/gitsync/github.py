@@ -3,7 +3,7 @@ from typing import List, Set
 from gitsync.api import GitProvider, GitProject
 from github import Github, Repository
 from urllib.parse import urlparse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 
 class GitHubProject(GitProject):
@@ -44,7 +44,7 @@ class GitHubProject(GitProject):
 
         for branch in self.__branches__:
             last_commit = branch.commit.commit.committer.date
-            if datetime.now() - last_commit <= active_time:
+            if datetime.now(timezone.utc) - last_commit <= active_time:
                 branches.add(branch.name)
             elif branch.protected:
                 branches.add(branch.name)
